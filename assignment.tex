@@ -78,7 +78,7 @@ So
 \begin{equation*}
 Pr(\abs{S_n}>2\sqrt{n}) \leq 2 e^{-2}.
  \end{equation*}
- \item  In the solution of this question we will use the central limit theorem which states the following.
+ \item  In the solution of this question we will use the Central Limit Theorem which states the following.
 \begin{theorem} 
 \label{central}
 (the Central Limit Theorem). Let $\{X_i\}^\infty_{i=1}$ be a sequence of mutually independent identically distributed random variables 
@@ -109,8 +109,32 @@ Pr(\abs{S_n}>2\sqrt{n}) &=
  2 - 2\Phi(\sqrt{6})
  \end{align*}
 \end{enumerate}
-\item
-
+ \item  In the solution of this question we will use the Weak Law of Large Number Theorem which states the following.
+\begin{theorem} 
+\label{weak}
+(Weak Law of Large Number). Let $\{X_i\}^\infty_{i=1}$ be a sequence of mutually independent identically distribbuted random variables with finite
+expectation $\mu$. Then, for every $\varepsilon > 0$, it hold that
+\end{theorem} 
+\begin{equation*}
+\lim\limits_{n \to \infty} \PX \Bigg(\abs{\frac{X_1+\ldots+X_n}{n} - \mu}\geq \varepsilon\Bigg) = 0.
+ \end{equation*}
+ The algorithm does the following
+ \begin{enumerate}
+\item For every $1 \leq i \leq s$ draw an element $x_i$ of $A$ independently and uniformly at random with replacement, for some $s = n(\varepsilon,\delta)$ which will be determined later. 
+\item Return avg$\{x_1,x_2,\ldots,x_s\}$
+ \end{enumerate}
+In the lecture we saw a special case prove for Theorem \ref{weak} in which the $X_i$`s have finite variance.
+Due to the linearity of the expectation, the fact that the random variabbles are mutually independent and Chebyshev`s inequality, it hold for every $\varepsilon > 0$ 
+ \begin{align*}
+\PX\Big(\abs{\frac{X_1 + \ldots + X_n}{n} - \mu} \geq \varepsilon \Big) &=
+\PX\Big(\abs{\frac{X_1 + \ldots + X_n}{n} - \EX\Big(\frac{X_1 + \ldots + X_n}{n}\Big)} \geq \varepsilon \Big) \\&\leq
+\frac{Var\Big(\frac{X_1 + \ldots + X_n}{n}\Big)}{\varepsilon^2} \\&\leq \frac{\sigma^2}{\varepsilon^2n},
+ \end{align*}
+ By taking n to be any integer satisfying
+  $n >  \frac{\sigma^2}{\varepsilon^2\delta}$ , we obtain $\PX\Big(\abs{\frac{X}{n} - p} \geq \varepsilon \Big) < \delta$.
+  Now notice that $0 \leq \alpha_1, \ldots, \alpha_n \leq 1$ so in our case $\sigma^2 < 1$ and we can take $s =\frac{1}{\varepsilon^2\delta} $.
+  It is evident that the algorithm runs in constant time (depending on $\varepsilon$ and $\delta.$).
+  
 \item Colour the elements of $\{1,\ldots,n\}$ independently and uniformly at random with three colours $c_1,c_2$ and $c_3$, 
 that is, for every $1 \leq i \leq n$ and every $1 \leq j \leq 3$
 \begin{equation*}
