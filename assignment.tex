@@ -29,11 +29,11 @@
 \author{Oren Friman 301677613}
 \maketitle
 				   
-\section{Introduction}
+\section{Answers}
 \begin{enumerate}
 \item
  \begin{enumerate}
-\item  In the solution of this question we will use the following version of Chernoff inequality which was proved in the lecture.
+\item  In the solution of this question we will use the Chernoff inequality which was proved in the lecture.
 \begin{theorem} (Chernoff inequalities). Let $X_1,\ldots,X_n$ be independent random variabbles that return values in $[0,1]$, and let $\sum_{i=1}^nX_i$. Then
  \begin{enumerate}
  \item For every $t>0$ it holds that
@@ -52,7 +52,7 @@ For every $i$, let $Y_i = \frac{X_i+1}{2}$ and $Y = \sum_{i=1}^nY_i$. Then $Pr(Y
   \begin{equation*}
  \EX(Y) = \EX\bigg(\sum^n_{i=1}Y_i\bigg) = \frac{n}{2},
  \end{equation*}
-due to the linearity of the expectation. Therefore
+due to the linearity of the expectation. Now
 \begin{align*}
 Pr(\abs{S_n}>2\sqrt{n}) = Pr(S_n<-2\sqrt{n}) + Pr(S_n>2\sqrt{n}),
 \end{align*}
@@ -74,7 +74,7 @@ Similarly
  Pr\bigg(Y>\frac{n}{2} + \sqrt{n}\bigg)\\&=
   Pr\bigg(Y>\EX(Y) + \sqrt{n}\bigg) \leq e^{\frac{-2(\sqrt{n})^2}{n}} = e^{-2},
 \end{align*}
-So
+Therefore
 \begin{equation*}
 Pr(\abs{S_n}>2\sqrt{n}) \leq 2 e^{-2}.
  \end{equation*}
@@ -86,9 +86,9 @@ with finite expectation $\mu$ and finite variance $\sigma^2>0$. For every positi
 and let $F_n$ be the cumulative distribution function of $Y_n$, that is, $F_n(\alpha) = \PX(Y_n\leq\alpha)$ for every $\alpha\in \R$. 
 Then $\lim_{n \to \infty} F_n(\alpha) = \Phi(\alpha)$ holds for every $\alpha \in \R$
 \end{theorem} 
-Let's calculate the expectation and variance, recall from \ref{ex} that $\EX(X_i) = 0$, we have
+Let's calculate the expectation and variance, recall from equation \ref{ex} that $\EX(X_i) = 0$, we have
 \begin{equation*}
-\EX(X_i^2) = (-1)^2 \frac{1}{3} + (0)^2 \frac{1}{3} + (-1)^2 \frac{1}{3} = \frac{2}{3},
+\EX(X_i^2) = (-1)^2 \frac{1}{3} + (0)^2 \frac{1}{3} + (1)^2 \frac{1}{3} = \frac{2}{3},
  \end{equation*}
 \begin{equation*}
 Var(X_i) = \EX(X_i^2) + (\EX(X_i))^2 = \frac{2}{3}.
@@ -140,14 +140,14 @@ that is, for every $1 \leq i \leq n$ and every $1 \leq j \leq 3$
 \begin{equation*}
 Pr(i\text{ is coloured with colour }c_j) = \frac{1}{3}.
  \end{equation*}
-Fix some $1 \leq i \leq m$. The probability that at most $1$ of the $4$ colours were used to colour the elements of $A_i$ is at most
+Fix some $1 \leq i \leq m$. The probability that at most $1$ of the $3$ colours were used to colour the elements of $A_i$ is at most
 \begin{equation*}
 3 \cdot \frac{1^k}{3^k} = \frac{1}{3^{k-1}}
  \end{equation*}
  where the $3$ term is for the choice of one colour we are allowed to use, the $1^k$ term is for all possible ways of colouring the elements of $A_i$ with the one colour we allowed to use, and the $3^k$ term is for all the possible ways of colouring the elements of $A_i$ without any restrictions.
  Therefore, applying a union bound we see that the probbability that there exists an index $1 \leq i \leq m$ such that at most one colour are used to colour the elements of $A_i$ is at most
  \begin{align*}
-\sum^m_{i=1}Pr(\text{at most one colour is used to colour the elements of} A_i) &\leq m \cdot\frac{1}{3^{k-1}} 
+\sum^m_{i=1}Pr(\text{ at most one colour is used to colour the elements of } A_i) &\leq m \cdot\frac{1}{3^{k-1}} 
 \\&< 2^{k-1} \frac{1}{3^{k-1}}  \\&< 1
  \end{align*}
 The last inequality is due to $k \geq 2$. We conclude that, with probabbility, our random colouring uses at least two colours in every $A_i$ and thus there exists a colouring with this property.
@@ -155,7 +155,7 @@ The last inequality is due to $k \geq 2$. We conclude that, with probabbility, o
  \begin{enumerate}
 \item  
 In order to determine the values of $\alpha$ and $\beta$ we use the equations
- $\int_{-\infty}^{\infty} f_X(x) dx = 1$ and $\EX(X) = \int_{-\infty}^{\infty} x f_X(x) dx$,
+ $\int_{-\infty}^{\infty} f_X(x) dx = 1$ and $\EX(X) = \int_{-\infty}^{\infty} x f_X(x) dx$, that was given in class.
  \begin{align*}\label{ff}
 1 = \int_{-\infty}^{\infty} f_X(x) dx &=
 \int_{0}^{1} \alpha x^2 + \beta dx  \\&=
@@ -216,16 +216,13 @@ Notice that the equation will have diffrent roots if $\beta^2 - 4\alpha c > 0$. 
 Y > 2 \text{ or } Y < -1
 \end{equation*}
  \begin{align*}
-1 - Pr(-1\leq Y\leq 2) &=
+ Pr(\text{ the equation has different roots }) &=
+1 - Pr(-1\leq Y\leq 2) \\&=
 1 - \int^2_{-1}f_y(x)dx \\&=
  1 - \frac{1}{5} \int^2_{0}dx \\&=
 1 - \Big(\frac{x}{5}\Bigr|^2_0\Big) \\&= \frac{3}{5}
  \end{align*}
 \item  
-In the solution of this question we will use the following Theorem.
-\begin{theorem} 
-For every $x \in \R$ it holds that $\Phi(-x) = 1 - \Phi(x)$.
-\end{theorem} 
  \begin{align*}
 Pr(\abs{Z}>\alpha) &=
 Pr(Z>\alpha) + Pr(Z<-\alpha) \\&=
@@ -237,12 +234,6 @@ Pr(Z>\alpha) + Pr(Z<-\alpha) \\&=
 2(1 - Pr(Z\leq\alpha)) \\&=
  2Pr(Z>\alpha)
  \end{align*}
- \end{enumerate}
- 
+ \end{enumerate} 
 \end{enumerate}
-
-\begin{thebibliography}{9} 
-
-\end{thebibliography}
-
 \end{document}
