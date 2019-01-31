@@ -130,9 +130,91 @@ The last inequality is due to $k \geq 2$. We conclude that, with probabbility, o
 \item
  \begin{enumerate}
 \item  
+In order to determine the values of $\alpha$ and $\beta$ we use the equations
+ $\int_{-\infty}^{\infty} f_X(x) dx = 1$ and $\EX(X) = \int_{-\infty}^{\infty} x f_X(x) dx$,
+ \begin{align*}\label{ff}
+1 = \int_{-\infty}^{\infty} f_X(x) dx &=
+\int_{0}^{1} \alpha x^2 + \beta dx  \\&=
+\alpha \int_{0}^{1}  x^2 dx +  \beta \int_{0}^{1}  dx  \\&=
+\alpha \Big(\frac{x^3}{3}\Bigr|^1_0\Big) + \beta \Big(x\Bigr|^1_0\Big) \\&=
+ \frac{\alpha}{3} + \beta
+ \end{align*}
+ 
+ \begin{align*}
+\frac{3}{5} = \EX(X) =\int_{-\infty}^{\infty} x f_X(x) dx &=
+\int_{0}^{1} \alpha x^3 + \beta x dx  \\&=
+\alpha \int_{0}^{1}  x^3 dx +  \beta \int_{0}^{1}  x dx  \\&=
+\alpha \Big(\frac{x^4}{4}\Bigr|^1_0\Big) + \beta \Big(\frac{x^2}{2}\Bigr|^1_0\Big) \\&=
+ \frac{\alpha}{4} +  \frac{\beta}{2}
+ \end{align*}
+ 
+Now we can solve the two equations
+ \begin{equation*}
+  \begin{cases}
+    \frac{\alpha}{3} + \beta = 1\\
+     \frac{\alpha}{4} +  \frac{\beta}{2} = \frac{3}{5}   \text{    \footnotesize multiply both sides by $-\frac{4}{3}$}
+  \end{cases} 
+  \end{equation*}
+   \begin{equation*}
+    \begin{cases}
+    \frac{\alpha}{3} + \beta = 1\\
+     \frac{-\alpha}{3} -  \frac{4\beta}{6} = -\frac{12}{15}
+  \end{cases}
+\end{equation*}
+Adding the equations
+\begin{equation*}
+\beta -  \frac{4\beta}{6} = 1 - \frac{12}{15} \rightarrow \beta = \frac{3}{5}
+\end{equation*}
+\begin{equation*}
+\frac{\alpha}{3} +  \frac{3}{5} = 1 \rightarrow\alpha = \frac{6}{5}
+\end{equation*}
+
 \item  
+Recall the quadratic formula for general quadratic equation $\alpha x^2 + \beta x + c = 0$
+\begin{equation*}
+\frac{-\beta \pm \sqrt{\beta^2 - 4\alpha c}}{2\alpha}
+\end{equation*}
+Notice that the equation will have diffrent roots if $\beta^2 - 4\alpha c > 0$. We have 
+\begin{equation*}
+4z^2 + 4zY + Y + 2 = 0.
+\end{equation*}
+ So $\alpha = 4$, $\beta = 4Y$ and $c = Y + 2$ therefore
+ \begin{equation*}
+ (4Y)^2 - 4 \cdot 4(Y + 2) > 0
+\end{equation*}
+ \begin{equation*}
+ 16Y^2 - 16 Y - 32 > 0,
+\end{equation*}
+ \begin{equation*}
+ 16(Y - 2)(Y + 1) > 0
+\end{equation*}
+ \begin{equation*}
+Y > 2 \text{ or } Y < -1
+\end{equation*}
+ \begin{align*}
+1 - Pr(-1\leq Y\leq 2) &=
+1 - \int^2_{-1}f_y(x)dx \\&=
+ 1 - \frac{1}{5} \int^2_{0}dx \\&=
+1 - \Big(\frac{x}{5}\Bigr|^2_0\Big) \\&= \frac{3}{5}
+ \end{align*}
 \item  
+In the solution of this question we will use the following Theorem.
+\begin{theorem} 
+For every $x \in \R$ it holds that $\Phi(-x) = 1 - \Phi(x)$.
+\end{theorem} 
+ \begin{align*}
+Pr(\abs{Z}>\alpha) &=
+Pr(Z>\alpha) + Pr(Z<-\alpha) \\&=
+1 - Pr(Z \leq \alpha) + Pr(Z<-\alpha) \\&=
+1 - \Phi(\alpha) + \Phi(-\alpha) \\&=
+1 - \Phi(\alpha) + 1 - \Phi(\alpha) \\&=
+2 - 2\Phi(\alpha)  \\&=
+2(1 -\Phi(\alpha))\\&=
+2(1 - Pr(Z\leq\alpha)) \\&=
+ 2Pr(Z>\alpha)
+ \end{align*}
  \end{enumerate}
+ 
 \end{enumerate}
 
 \begin{thebibliography}{9} 
