@@ -1,0 +1,119 @@
+\documentclass[a4paper, 11pt, oneside]{article}
+
+ \usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb, float,centernot}
+\usepackage[shortlabels]{enumitem}
+ \usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+  
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand\abs[1]{\left|#1\right|}
+
+\DeclareRobustCommand{\bbone}{\text{\usefont{U}{bbold}{m}{n}1}}
+
+\DeclareMathOperator{\EX}{\mathbb{E}}
+\DeclareMathOperator{\PX}{\mathbb{P}}
+\begin{document}
+
+\title{Final take-home exam}
+\author{Oren Friman 301677613}
+\maketitle
+				   
+\section{Introduction}
+\begin{enumerate}
+\item
+ \begin{enumerate}
+\item  In the solution of this question we will use the following version of Chernoff inequality which was proved in the lecture.
+\begin{theorem} (Chernoff inequalities). Let $X_1,\ldots,X_n$ be independent random variabbles that return values in $[0,1]$, and let $\sum_{i=1}^nX_i$. Then
+ \begin{enumerate}
+ \item For every $t>0$ it holds that
+ \begin{equation*}
+P(X\geq\EX(X)+t) \leq e^{\frac{-2t^2}{n}}\text{ and } P(X\leq\EX(X)-t) \leq e^{\frac{-2t^2}{n}}
+\end{equation*}
+ \end{enumerate}
+\end{theorem}
+For every $i$, let $Y_i = \frac{X_i+1}{2}$ and $Y = \sum_{i=1}^nY_i$. Then $Pr(Y_i=0) = Pr(Y_i=\frac{1}{2}) = Pr(Y_i=1) = \frac{1}{3}$ for every $i$. We have
+  \begin{equation}\label{ex}
+ \EX(X_i) = -1 \frac{1}{3} + 0 \frac{1}{3} + 1 \frac{1}{3} = 0,
+ \end{equation}
+\begin{equation*}
+ \EX(Y_i) = \EX\bigg(\frac{X_i + 1}{2}\bigg) = \frac{1}{2}\EX(X_i)+\frac{1}{2} = \frac{1}{2},
+ \end{equation*}
+  \begin{equation*}
+ \EX(Y) = \EX\bigg(\sum^n_{i=1}Y_i\bigg) = \frac{n}{2},
+ \end{equation*}
+due to the linearity of the expectation. Therefore
+\begin{align*}
+Pr(\abs{S_n}>2\sqrt{n}) = Pr(S_n<-2\sqrt{n}) + Pr(S_n>2\sqrt{n}),
+\end{align*}
+Let's calculate separately
+\begin{align*}
+ Pr(S_n<-2\sqrt{n}) &=
+ Pr\bigg(\sum_{i=1}^nX_i<-2\sqrt{n}\bigg) \\&=
+ Pr\bigg(\sum_{i=1}^n\frac{X_i+1}{2}<\frac{-2\sqrt{n}+n}{2}\bigg)\\&=
+ Pr\bigg(\sum_{i=1}^nY_i<\frac{-2\sqrt{n}+n}{2}\bigg)\\&=
+ Pr\bigg(Y<\frac{n}{2} - \sqrt{n}\bigg)\\&=
+  Pr\bigg(Y<\EX(Y) - \sqrt{n}\bigg) \leq e^{\frac{-2(\sqrt{n})^2}{n}} = e^{-2},
+\end{align*}
+Similarly
+\begin{align*}
+ Pr(S_n>2\sqrt{n}) &=
+ Pr\bigg(\sum_{i=1}^nX_i>2\sqrt{n}\bigg) \\&=
+ Pr\bigg(\sum_{i=1}^n\frac{X_i+1}{2}>\frac{2\sqrt{n}+n}{2}\bigg)\\&=
+ Pr\bigg(\sum_{i=1}^nY_i>\frac{2\sqrt{n}+n}{2}\bigg)\\&=
+ Pr\bigg(Y>\frac{n}{2} + \sqrt{n}\bigg)\\&=
+  Pr\bigg(Y>\EX(Y) + \sqrt{n}\bigg) \leq e^{\frac{-2(\sqrt{n})^2}{n}} = e^{-2},
+\end{align*}
+So
+\begin{equation*}
+Pr(\abs{S_n}>2\sqrt{n}) \leq 2 e^{-2}.
+ \end{equation*}
+ \item  In the solution of this question we will use the central limit theorem which states the following.
+\begin{theorem} 
+\label{central}
+(the Central Limit Theorem). Let $\{X_i\}^\infty_{i=1}$ be a sequence of mutually independent identically distributed random variables 
+with finite expectation $\mu$ and finite variance $\sigma^2>0$. For every positive integer $n$, let $Y_n = \frac{X_1 + \ldots + X_n - n \mu}{\sigma\sqrt{n}}$
+and let $F_n$ be the cumulative distribution function of $Y_n$, that is, $F_n(\alpha) = \PX(Y_n\leq\alpha)$ for every $\alpha\in \R$. 
+Then $\lim_{n \to \infty} F_n(\alpha) = \Phi(\alpha)$ holds for every $\alpha \in \R$
+\end{theorem} 
+Let's calculate the expectation and variance, recall from \ref{ex} that $\EX(X_i) = 0$, we have
+\begin{equation*}
+\EX(X_i^2) = (-1)^2 \frac{1}{3} + (0)^2 \frac{1}{3} + (-1)^2 \frac{1}{3} = \frac{2}{3},
+ \end{equation*}
+\begin{equation*}
+Var(X_i) = \EX(X_i^2) + (\EX(X_i))^2 = \frac{2}{3}.
+ \end{equation*}
+ Let $Y = \frac{S_n}{\sqrt{\frac{2}{3}}}$,
+since the $X_i$`s are independent and identically distributed random vairables with finite expectation and variance, 
+ we can apply Therom \ref{central} to obtain
+ \begin{align*}
+Pr(\abs{S_n}>2\sqrt{n}) &=
+ 1 - Pr(\abs{S_n} \leq 2\sqrt{n}) \\&=
+ 1 - Pr(-2\sqrt{n} \leq S_n \leq 2\sqrt{n}) \\&=
+ 1 - Pr\Bigg(\frac{-2\sqrt{n} - n \cdot 0}{\sqrt{\frac{2}{3}}\sqrt{n}} \leq \frac{S_n - n \cdot 0}{\sqrt{\frac{2}{3}}\sqrt{n}} \leq \frac{2\sqrt{n} - n \cdot 0}{\sqrt{\frac{2}{3}}\sqrt{n}}\Bigg) \\&=
+ 1 - Pr\Bigg(\frac{-2}{\sqrt{\frac{2}{3}}} \leq \frac{S_n}{\sqrt{\frac{2}{3}}} \leq \frac{2}{\sqrt{\frac{2}{3}}}\Bigg)\\&=
+ 1 - Pr\Bigg(-\sqrt{6} \leq Y \leq \sqrt{6}\Bigg)\\&=
+ 1 - \Big[Pr(Y \leq \sqrt{6}) - Pr(Y < -\sqrt{6})\Big] \\&=
+ 1 - \Big[\Phi(\sqrt{6}) -\Phi(-\sqrt{6})\Big] \\&=
+ 1 - \Big[\Phi(\sqrt{6}) - (1 - \Phi(\sqrt{6}))\Big] \\&=
+ 2 - 2\Phi(\sqrt{6})
+ \end{align*}
+\end{enumerate}
+
+\end{enumerate}
+
+\begin{thebibliography}{9} 
+
+\end{thebibliography}
+
+\end{document}
