@@ -109,7 +109,30 @@ Pr(\abs{S_n}>2\sqrt{n}) &=
  2 - 2\Phi(\sqrt{6})
  \end{align*}
 \end{enumerate}
+\item
 
+\item Colour the elements of $\{1,\ldots,n\}$ independently and uniformly at random with three colours $c_1,c_2$ and $c_3$, 
+that is, for every $1 \leq i \leq n$ and every $1 \leq j \leq 3$
+\begin{equation*}
+Pr(i\text{ is coloured with colour }c_j) = \frac{1}{3}.
+ \end{equation*}
+Fix some $1 \leq i \leq m$. The probability that at most $1$ of the $4$ colours were used to colour the elements of $A_i$ is at most
+\begin{equation*}
+3 \cdot \frac{1^k}{3^k} = \frac{1}{3^{k-1}}
+ \end{equation*}
+ where the $3$ term is for the choice of one colour we are allowed to use, the $1^k$ term is for all possible ways of colouring the elements of $A_i$ with the one colour we allowed to use, and the $3^k$ term is for all the possible ways of colouring the elements of $A_i$ without any restrictions.
+ Therefore, applying a union bound we see that the probbability that there exists an index $1 \leq i \leq m$ such that at most one colour are used to colour the elements of $A_i$ is at most
+ \begin{align*}
+\sum^m_{i=1}Pr(\text{at most one colour is used to colour the elements of} A_i) &\leq m \cdot\frac{1}{3^{k-1}} 
+\\&< 2^{k-1} \frac{1}{3^{k-1}}  \\&< 1
+ \end{align*}
+The last inequality is due to $k \geq 2$. We conclude that, with probabbility, our random colouring uses at least two colours in every $A_i$ and thus there exists a colouring with this property.
+\item
+ \begin{enumerate}
+\item  
+\item  
+\item  
+ \end{enumerate}
 \end{enumerate}
 
 \begin{thebibliography}{9} 
